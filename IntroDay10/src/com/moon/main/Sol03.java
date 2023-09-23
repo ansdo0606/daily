@@ -1,0 +1,66 @@
+/**
+ * 공 던지기
+	문제 설명
+	머쓱이는 친구들과 동그랗게 서서 공 던지기 게임을 하고 있습니다. 공은 1번부터 던지며 오른쪽으로 한 명을 
+	건너뛰고 그다음 사람에게만 던질 수 있습니다. 친구들의 번호가 들어있는 정수 배열 numbers와 정수 K가 주어질 때, 
+	k번째로 공을 던지는 사람의 번호는 무엇인지 return 하도록 solution 함수를 완성해보세요.
+	
+	제한사항
+	2 < numbers의 길이 < 100
+	0 < k < 1,000
+	numbers의 첫 번째와 마지막 번호는 실제로 바로 옆에 있습니다.
+	numbers는 1부터 시작하며 번호는 순서대로 올라갑니다.
+	입출력 예
+	numbers	k	result
+	[1, 2, 3, 4]	2	3
+	[1, 2, 3, 4, 5, 6]	5	3
+	[1, 2, 3]	3	2
+	입출력 예 설명
+	입출력 예 #1
+	
+	1번은 첫 번째로 3번에게 공을 던집니다.
+	3번은 두 번째로 1번에게 공을 던집니다.
+	입출력 예 #2
+	
+	1번은 첫 번째로 3번에게 공을 던집니다.
+	3번은 두 번째로 5번에게 공을 던집니다.
+	5번은 세 번째로 1번에게 공을 던집니다.
+	1번은 네 번째로 3번에게 공을 던집니다.
+	3번은 다섯 번째로 5번에게 공을 던집니다.
+	입출력 예 #3
+	
+	1번은 첫 번째로 3번에게 공을 던집니다.
+	3번은 두 번째로 2번에게 공을 던집니다.
+	2번은 세 번째로 1번에게 공을 던집니다.
+ */
+package com.moon.main;
+
+public class Sol03 {
+	  public int solution(int[] numbers, int k) {
+	        int people = numbers.length;
+
+	        // 공을 받는 사람 순서를 찾습니다. (k * 2)
+	        // 공을 던지는 사람 순서로 변경합니다. ((K - 1) * 2)
+	        // 순환되는 구조이므로 나머지를 통해 위치를 찾습니다. % people
+	        return numbers[((k - 1) * 2) % people];
+	    }
+
+	    public static void main(String[] args) {
+	    	Sol03 solution = new Sol03();
+
+	        int[] numbers1 = {1, 2, 3, 4};
+	        int k1 = 2;
+	        int result1 = solution.solution(numbers1, k1);
+	        System.out.println(result1); // 3
+
+	        int[] numbers2 = {1, 2, 3, 4, 5, 6};
+	        int k2 = 5;
+	        int result2 = solution.solution(numbers2, k2);
+	        System.out.println(result2); // 3
+
+	        int[] numbers3 = {1, 2, 3};
+	        int k3 = 3;
+	        int result3 = solution.solution(numbers3, k3);
+	        System.out.println(result3); // 2
+	    }
+}
